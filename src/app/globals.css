@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+/* Remove default border and set a custom font */
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  font-family: 'Inter', sans-serif !important;
+  background-color: #f9fafb; /* light background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Navigation (Month/Year header) styling */
+.react-calendar__navigation {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.react-calendar__navigation button {
+  background: #edf2f7;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: #2d3748;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background: #e2e8f0;
+}
+
+/* Customize the tiles (each day cell) */
+.react-calendar__tile {
+  background: transparent;
+  border: none;
+  margin: 0.2rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.1s ease;
+  color: #2d3748;
+  position: relative; /* For positioning event dots */
+}
+
+/* Hover effect for tiles */
+.react-calendar__tile:enabled:hover {
+  background: #edf2f7;
+  transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+/* Active (selected) tile styling */
+.react-calendar__tile--active {
+  background: #3182ce; /* Removed !important for cleaner override */
+  color: #fff;
+  border-radius: 6px;
+}
+
+/* Styling for today's date */
+.react-calendar__tile--now {
+  border: 2px solid #3182ce;
+  background: #e6f7ff; /* Light blue to make today pop */
+}
+
+/* Styling for weekends */
+.react-calendar__month-view__days__day--weekend {
+  color: #e53e3e; /* Red for weekends */
+}
+
+/* Event dots styling */
+.event-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.event-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 0 1px;
 }

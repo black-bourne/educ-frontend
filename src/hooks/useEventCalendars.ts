@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react";
 import { EventCalendar, fetchEventData } from "@/api/calendar";
 
@@ -16,7 +18,7 @@ export const useEventCalendars: () => [
         const fetchEvents = await fetchEventData();
         setEvent(fetchEvents ?? []);
       } catch (error: any) {
-        setError(error.message || "An unknown error occurred");
+        setError(err || "An unknown error occurred");
       } finally {
         setLoading(false);
       }

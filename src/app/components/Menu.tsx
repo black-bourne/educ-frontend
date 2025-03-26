@@ -1,4 +1,8 @@
-import { role } from "@/lib/data";
+"use client"
+
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -93,6 +97,7 @@ const mainItems = [
 ];
 
 const Menu = () => {
+  const role = useSelector((state: RootState) => state.auth.role);
   return (
     <div className="mt-3 text-sm">
       {mainItems.map((ite) => (

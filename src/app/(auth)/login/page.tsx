@@ -3,14 +3,11 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { setToken } from "@/redux/slices/authSlice";
+import api from "@/api/axios"
 
-const dataUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
 
 export default function LoginPage() {
-    const dispatch = useDispatch();
     const router = useRouter();
     const searchParams = useSearchParams();
     const resetSuccess = searchParams.get("reset") === "success";
@@ -29,16 +26,8 @@ export default function LoginPage() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${dataUrl}/api/auth/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-            if (!response.ok) {
-                throw new Error("Login failed. Please check your credentials.");
-            }
-            const data = await response.json();
-            setTempToken(data.token);
+            const response = await api.post("/api/auth/login", { email, password });
+            setTempToken(response.data.token);
             setShowOtpField(true);
         } catch (err: any) {
             setError(err.message);
@@ -52,17 +41,14 @@ export default function LoginPage() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${dataUrl}/api/auth/verify-otp`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ token: tempToken, otp }),
-            });
-            if (!response.ok) {
-                throw new Error("Invalid or expired OTP.");
-            }
-            const data = await response.json();
-            dispatch(setToken(data.token));
-            const decoded = JSON.parse(atob(data.token.split(".")[1]));
+            const response = await api.post("/api/auth/verify-otp", { token: tempToken, otp });
+
+            const token = response.data.token;
+            console.log(JSON.parse(atob(token.split(".")[1])));
+            localStorage.setItem("authToken", token)
+
+
+            const decoded = JSON.parse(atob(token.split(".")[1]));
             if (decoded.role === "teacher") {
                 router.push("/teacher");
             } else if (decoded.role === "student") {

@@ -8,7 +8,7 @@ export const useEventCalendars: () => [
   boolean,
   string | null,
 ] = () => {
-  const [event, setEvent] = useState<EventCalendar[]>([]);
+  const [events, setEvent] = useState<EventCalendar[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,12 +18,12 @@ export const useEventCalendars: () => [
         const fetchEvents = await fetchEventData();
         setEvent(fetchEvents ?? []);
       } catch (error: any) {
-        setError(err || "An unknown error occurred");
+        setError(error.response?.data?.error || error.message || "An unknown error occurred");
       } finally {
         setLoading(false);
       }
     };
     fetchData();
   }, []);
-  return [event, loading, error];
+  return [events, loading, error];
 };

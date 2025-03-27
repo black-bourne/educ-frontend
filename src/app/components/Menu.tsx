@@ -23,12 +23,6 @@ const mainItems = [
         visible: ["teacher"],
       },
       {
-        icon: "/subject.png",
-        label: "Subjects",
-        href: "/list/subjects",
-        visible: ["admin"],
-      },
-      {
         icon: "/lesson.png",
         label: "Lessons",
         href: "/list/lessons",
@@ -44,7 +38,7 @@ const mainItems = [
         icon: "/assignment.png",
         label: "Assignments",
         href: "/list/assignments",
-        visible: ["admin", "teacher", "student", "parent"],
+        visible: ["teacher", "student"],
       },
       {
         icon: "/result.png",
@@ -62,7 +56,7 @@ const mainItems = [
         icon: "/calendar.png",
         label: "Events",
         href: "/list/events",
-        visible: ["admin", "teacher", "student", "parent"],
+        visible: ["teacher", "student"],
       },
       {
         icon: "/announcement.png",
@@ -90,7 +84,7 @@ const mainItems = [
         icon: "/logout.png",
         label: "Logout",
         href: "/logout",
-        visible: ["admin", "teacher", "student", "parent"],
+        visible: ["teacher", "student"],
       },
     ],
   },

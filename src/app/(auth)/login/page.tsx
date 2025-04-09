@@ -183,7 +183,7 @@ export default function LoginPage() {
                     transition={{ delay: 0.3, duration: 0.4 }}
                     className="mt-4 text-center"
                 >
-                    <a href="/auth/reset-email" className="text-indigo-600 hover:underline text-sm">
+                    <a href="/reset-email" className="text-indigo-600 hover:underline text-sm">
                         Forgot your password?
                     </a>
                 </motion.div>

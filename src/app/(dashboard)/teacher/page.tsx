@@ -1,5 +1,5 @@
 import BigCalendarStudent from "@/app/components/BigCalendarStudent";
-import Announcements from "@/app/components/Announcement";
+import Announcements from "@/app/components/Announcements";
 
 function EventCalendar() {
   return null;

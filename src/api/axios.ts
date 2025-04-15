@@ -8,13 +8,11 @@ const api = axios.create({
 
 export const setupAxiosInterceptors = () => {
   const updateToken = () => {
-    const token = store.getState().auth.token
+    const token = store.getState().auth.token;
+    console.log("Token before request:", token || "None");
     api.defaults.headers.common["Authorization"] = token ? `Bearer ${token}` : "";
   };
-
-  // Initial setup
   updateToken();
-  // Subscribe to store changes
   const unsubscribe = store.subscribe(updateToken);
 
   api.interceptors.response.use(

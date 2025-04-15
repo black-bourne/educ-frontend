@@ -11,12 +11,6 @@ const mainItems = [
     title: "DASHBOARD",
     items: [
       {
-        icon: "/home.png",
-        label: "Home",
-        href: "/",
-        visible: ["teacher", "student"],
-      },
-      {
         icon: "/student.png",
         label: "Students",
         href: "/list/students",

@@ -1,3 +1,4 @@
+@tailwind utilities;
 @import "tailwindcss";
 
 
@@ -83,4 +84,50 @@
   height: 6px;
   border-radius: 50%;
   margin: 0 1px;
+}
+
+
+.constellation-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #4DB6AC;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  z-index: 5;
+}
+
+.program-card, .highlight-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.program-card:hover, .highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(77, 182, 172, 0.7);
+}
+
+.orb {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(77, 182, 172, 0.8) 0%, rgba(77, 182, 172, 0) 70%);
+  border-radius: 50%;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.wave {
+  animation: wave 4s infinite linear;
+}
+
+.wave.delay-200 {
+  animation-delay: 2s;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+}
+
+@keyframes wave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }

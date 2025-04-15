@@ -1,4 +1,3 @@
-// student/assignments.tsx
 "use client";
 
 import { useAssignments } from "@/hooks/useAssignments";
